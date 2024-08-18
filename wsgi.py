@@ -19,11 +19,6 @@ def hello_geek():
 
 
 if __name__ == '__main__':
-    FLASK_ENV = os.getenv('FLASK_ENV', 'production')
-    if FLASK_ENV == 'development':
-        host = "0.0.0.0"
-        DEBUG_MODE = os.getenv('FLASK_DEBUG', 'True') == 'True'
-        app.run(debug=DEBUG_MODE, host=host, port=5001)
-    else:
-        host = "127.0.0.1"
-        app.run(host=host, port=5001)
+    HOST = os.getenv('FLASK_HOST', '127.0.0.1')  # Default to localhost
+    DEBUG_MODE = os.getenv('FLASK_DEBUG', 'False') == 'True'
+    app.run(debug=DEBUG_MODE, host=HOST, port=5001)
