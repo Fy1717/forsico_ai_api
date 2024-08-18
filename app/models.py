@@ -7,7 +7,8 @@ from datetime import datetime
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.ERROR)
 handler = RotatingFileHandler('app.log', maxBytes=10000, backupCount=5)
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+formatter = logging.Formatter('%(asctime)s - %(name)s - ' 
+                              + '%(levelname)s - %(message)s')
 handler.setFormatter(formatter)
 logger.addHandler(handler)
 
@@ -20,7 +21,6 @@ class Log(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     response_text = db.Column(db.Text, nullable=False)
     
-    
     def to_dict(self):
         return {
             "id": self.id,
@@ -30,6 +30,7 @@ class Log(db.Model):
         }
 
 # CRUD işlemleri ve diğer fonksiyonlar buraya eklenebilir
+
 
 # Log CRUD
 def create_log(task_id, response_text):
@@ -58,7 +59,7 @@ def read_logs():
         log_error(f"Error reading log: {e}")
         return None
     
-    
+
 def read_log(log_id):
     try:
         log = Log.query.get(log_id)

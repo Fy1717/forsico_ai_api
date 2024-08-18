@@ -34,7 +34,8 @@ def check_and_create_database():
     cur = conn.cursor()
 
     # Belirtilen veritabanının olup olmadığını kontrol et
-    cur.execute("SELECT 1 FROM pg_catalog.pg_database WHERE datname = %s", (DB_NAME,))
+    cur.execute("SELECT 1 FROM pg_catalog.pg_database " + 
+    "WHERE datname = %s", (DB_NAME,))
     exists = cur.fetchone()
     if not exists:
         # Veritabanı yoksa, yeni bir tane oluştur
