@@ -11,7 +11,7 @@ def createApp():
 
     app = Flask(__name__, static_url_path="")
     app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv(
-        "DB_URI", "postgresql://postgres:postgres@localhost:5432/" 
+        "DB_URI", "postgresql://postgres:postgres@localhost:5432/"
         + "forsico_io_ai")
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     app.config["UPLOAD_FOLDER"] = os.getenv("UPLOAD_FOLDER")
@@ -20,7 +20,6 @@ def createApp():
     app.config["INSTITUTION_ADMIN_SECRET_KEY"] = os.getenv(
         "INSTITUTION_ADMIN_SECRET_KEY")
     app.config["ATTENDANT_SECRET_KEY"] = os.getenv("ATTENDANT_SECRET_KEY")
-    
     CORS(app)
     db = SQLAlchemy(app)
     Migrate(app, db)

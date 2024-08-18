@@ -10,7 +10,6 @@ api_logs = Blueprint('logs', __name__, url_prefix="/api/logs")
 # @token_required
 def read_all_logs():
     log_list = read_logs()
-    
     if log_list:
         return jsonify({"data": [log.to_dict() for log in log_list]})
     return jsonify(error="Logs not found"), 404

@@ -5,14 +5,14 @@ from app.models import create_log
 api_ai = Blueprint('ai', __name__, url_prefix="/api/ai")
 
 # Modeli yükle
-'''
-model_id_en = "gpt2"  
+'''model_id_en = "gpt2"
 # Örnek olarak GPT-2 İngilizce modeli
-model_id_tr = "dbmdz/bert-base-turkish-cased"  
+model_id_tr = "dbmdz/bert-base-turkish-cased"
 # Örnek olarak BERT Türkçe modeli
-
-model_en = transformers.pipeline("text-generation", model=model_id_en, device=0)
-model_tr = transformers.pipeline("text-generation", model=model_id_tr, device=0)
+model_en = transformers.pipeline("text-generation",
+model=model_id_en, device=0)
+model_tr = transformers.pipeline("text-generation", 
+model=model_id_tr, device=0)
 '''
 
 
@@ -30,25 +30,25 @@ def generate_text():
             {
                 "id": 202,
                 "key": "Database Optimization",
-                "description": "Optimize database queries and indices for performance.",
+                "description": "Optimize database queries",
                 "title": "Backend Development"
             },
             {
                 "id": 203,
                 "key": "Security Enhancements",
-                "description": "Implement API security measures, including rate limiting and logging.",
+                "description": "Implement API security measures",
                 "title": "Backend Development"
             },
             {
                 "id": 204,
                 "key": "Session Management",
-                "description": "Develop secure session management for user authentication.",
+                "description": "Develop secure session management.",
                 "title": "Backend Development"
             },
             {
                 "id": 205,
                 "key": "Cloud Integration",
-                "description": "Setup cloud storage solutions for scalable data handling.",
+                "description": "Setup cloud storage solutions",
                 "title": "Backend Development"
             },
             {
@@ -60,7 +60,7 @@ def generate_text():
             {
                 "id": 102,
                 "key": "Footer Component",
-                "description": "Develop a footer component with links and contact info.",
+                "description": "Develop a footer component",
                 "title": "Frontend Development"
             },
             {
@@ -72,7 +72,7 @@ def generate_text():
             {
                 "id": 104,
                 "key": "Accessibility Features",
-                "description": "Ensure all frontend components meet accessibility standards.",
+                "description": "Ensure all frontend components",
                 "title": "Frontend Development"
             },
             {
@@ -83,14 +83,12 @@ def generate_text():
             }
         ]
     }
-    
     input_text = request.json.get('text', '')
-    # language = request.json.get('lang', 'en')  
+    # language = request.json.get('lang', 'en')
     # # Varsayılan dil İngilizce olarak ayarlanmıştır.
 
     if not input_text:
         return jsonify({'error': 'No text provided'}), 400
 
     create_log(0, str(default_result_object))
-    
     return jsonify({'data': default_result_object})

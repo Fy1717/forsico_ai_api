@@ -7,7 +7,7 @@ from datetime import datetime
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.ERROR)
 handler = RotatingFileHandler('app.log', maxBytes=10000, backupCount=5)
-formatter = logging.Formatter('%(asctime)s - %(name)s - ' 
+formatter = logging.Formatter('%(asctime)s - %(name)s - '
                               + '%(levelname)s - %(message)s')
 handler.setFormatter(formatter)
 logger.addHandler(handler)
@@ -38,22 +38,18 @@ def create_log(task_id, response_text):
         log = Log(task_id=task_id, response_text=response_text)
         db.session.add(log)
         db.session.commit()
-        
         # print("log created : " + response_text)
-        
         return log
     except Exception as e:
         # print("error : " + str(e))
         db.session.rollback()
-        
         log_error(f"Error creating log: {e}")
         return None
-        
-        
+            
+
 def read_logs():
     try:
         logs = Log.query.all()
-        
         return logs
     except Exception as e:
         log_error(f"Error reading log: {e}")
