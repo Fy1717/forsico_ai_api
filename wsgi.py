@@ -18,6 +18,11 @@ def hello_geek():
     return '<h1>Hello FORSICO</h2>'
 
 
+if os.getenv('FLASK_ENV') == 'development':
+    host = "0.0.0.0"
+else:
+    host = "127.0.0.1"
+
 if __name__ == '__main__':
     DEBUG_MODE = os.getenv('FLASK_DEBUG', 'False') == 'True'
-    app.run(debug=DEBUG_MODE, host="0.0.0.0", port=5001)
+    app.run(debug=DEBUG_MODE, host=host, port=5001)

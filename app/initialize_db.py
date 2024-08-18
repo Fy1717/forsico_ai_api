@@ -11,7 +11,7 @@ import os
 # flask db upgrade
 
 
-SECRET_KEY = "Bnxfm3x42ynnTUONOuE7gXCmb2oXYFzL"
+SECRET_KEY = os.getenv('SECRET_KEY', 'Bnxfm3x42ynnTUONOuE7gXCmb2oXYFzL')
 
 # Çevre değişkenlerinden veritabanı bilgilerini al
 DB_USERNAME = os.getenv('DB_USERNAME', 'postgres')
