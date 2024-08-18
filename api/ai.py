@@ -1,5 +1,5 @@
-#import transformers
-#from app.auth import token_required
+# import transformers
+# from app.auth import token_required
 from flask import Blueprint, request, jsonify
 from app.models import create_log
 api_ai = Blueprint('ai', __name__, url_prefix="/api/ai")
@@ -13,9 +13,10 @@ model_en = transformers.pipeline("text-generation", model=model_id_en, device=0)
 model_tr = transformers.pipeline("text-generation", model=model_id_tr, device=0)
 '''
 
+
 @api_ai.route('/generate', methods=['POST'])
-#@token_required
-def generate_text(): #current_user
+# @token_required
+def generate_text(): # current_user
     default_result_object = {
         "tasks": [
             {
@@ -82,7 +83,7 @@ def generate_text(): #current_user
     }
     
     input_text = request.json.get('text', '')
-    #language = request.json.get('lang', 'en')  # Varsayılan dil İngilizce olarak ayarlanmıştır.
+    # language = request.json.get('lang', 'en')  # Varsayılan dil İngilizce olarak ayarlanmıştır.
 
     if not input_text:
         return jsonify({'error': 'No text provided'}), 400

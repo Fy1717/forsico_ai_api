@@ -5,6 +5,7 @@ from flask_cors import CORS
 from flask_migrate import Migrate
 from dotenv import load_dotenv
 
+
 def createApp():
     load_dotenv('forsico.env')  # Ensure the .env file is loaded
 

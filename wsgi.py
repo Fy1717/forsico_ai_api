@@ -12,9 +12,11 @@ createDB()
 app.register_blueprint(api_ai)
 app.register_blueprint(api_logs)
 
+
 @app.route('/')
 def hello_geek():
     return '<h1>Hello FORSICO</h2>'
+
 
 if __name__ == '__main__':
     DEBUG_MODE = os.getenv('FLASK_DEBUG', 'False') == 'True'

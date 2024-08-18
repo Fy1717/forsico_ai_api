@@ -13,11 +13,13 @@ logger.addHandler(handler)
 
 db = SQLAlchemy()
 
+
 class Log(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     task_id = db.Column(db.Integer, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     response_text = db.Column(db.Text, nullable=False)
+    
     
     def to_dict(self):
         return {
@@ -36,15 +38,16 @@ def create_log(task_id, response_text):
         db.session.add(log)
         db.session.commit()
         
-        #print("log created : " + response_text)
+        # print("log created : " + response_text)
         
         return log
     except Exception as e:
-        #print("error : " + str(e))
+        # print("error : " + str(e))
         db.session.rollback()
         
         log_error(f"Error creating log: {e}")
         return None
+        
         
 def read_logs():
     try:
@@ -55,6 +58,7 @@ def read_logs():
         log_error(f"Error reading log: {e}")
         return None
     
+    
 def read_log(log_id):
     try:
         log = Log.query.get(log_id)
@@ -62,6 +66,7 @@ def read_log(log_id):
     except Exception as e:
         log_error(f"Error reading log: {e}")
         return None
+
 
 def update_log(log_id, new_response_text):
     try:
@@ -75,6 +80,7 @@ def update_log(log_id, new_response_text):
         db.session.rollback()
         log_error(f"Error updating log: {e}")
         return None
+
 
 def delete_log(log_id):
     try:
