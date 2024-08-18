@@ -3,7 +3,7 @@ from app import createApp
 import os
 # import psycopg2
 # from psycopg2 import sql
-# from app.models import Log        
+# from app.models import Log
 
 # Migration işlemleri için dosya dizininde yapılması gereken terminal kodları
 # flask db init

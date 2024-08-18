@@ -20,7 +20,7 @@ class Log(db.Model):
     task_id = db.Column(db.Integer, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     response_text = db.Column(db.Text, nullable=False)
-    
+
     def to_dict(self):
         return {
             "id": self.id,
@@ -45,7 +45,7 @@ def create_log(task_id, response_text):
         db.session.rollback()
         log_error(f"Error creating log: {e}")
         return None
-            
+
 
 def read_logs():
     try:
@@ -54,7 +54,7 @@ def read_logs():
     except Exception as e:
         log_error(f"Error reading log: {e}")
         return None
-    
+
 
 def read_log(log_id):
     try:
