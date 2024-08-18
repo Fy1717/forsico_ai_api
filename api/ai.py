@@ -94,23 +94,3 @@ def generate_text():
     create_log(0, str(default_result_object))
     
     return jsonify({'data': default_result_object})
-
-    '''
-    try:
-        if language == 'tr':
-            generated_text = model_tr(input_text)[0]['generated_text']
-        else:  # Varsayılan olarak İngilizce model kullanılır
-            generated_text = model_en(input_text)[0]['generated_text']
-
-        task = add_task(input_text)
-        if task is None:
-            return jsonify({'error': 'Failed to add task'}), 500
-        
-        log = create_log(task.id, generated_text)
-        if log is None:
-            return jsonify({'error': 'Failed to log response'}), 500
-
-        return jsonify({'generated_text': generated_text})
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
-    '''

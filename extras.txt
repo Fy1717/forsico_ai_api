@@ -1,0 +1,57 @@
+ai.py + 95
+
+'''
+    try:
+        if language == 'tr':
+            generated_text = model_tr(input_text)[0]['generated_text']
+        else:  # Varsayılan olarak İngilizce model kullanılır
+            generated_text = model_en(input_text)[0]['generated_text']
+
+        task = add_task(input_text)
+        if task is None:
+            return jsonify({'error': 'Failed to add task'}), 500
+        
+        log = create_log(task.id, generated_text)
+        if log is None:
+            return jsonify({'error': 'Failed to log response'}), 500
+
+        return jsonify({'generated_text': generated_text})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+'''
+
+
+initialize.db + 25
+
+'''
+def check_and_create_database():
+    # Veritabanına bağlan
+    conn = psycopg2.connect(
+        dbname=DB_NAME,  # postgres varsayılan veritabanına bağlan
+        user=DB_USERNAME,
+        password=DB_PASSWORD,
+        host=DB_HOST,
+        port=DB_PORT
+    )
+    
+    conn.autocommit = True  # Veritabanı değişikliklerini otomatik işle
+    cur = conn.cursor()
+
+    # Belirtilen veritabanının olup olmadığını kontrol et
+    cur.execute("SELECT 1 FROM pg_catalog.pg_database " + 
+    "WHERE datname = %s", (DB_NAME,))
+    
+    exists = cur.fetchone()
+    if not exists:
+        # Veritabanı yoksa, yeni bir tane oluştur
+        cur.execute(sql.SQL("CREATE DATABASE {}").format(
+            sql.Identifier(DB_NAME)
+        ))
+        print(f"Database {DB_NAME} created.")
+    else:
+        print(f"Database {DB_NAME} already exists.")
+
+    # Bağlantıyı kapat
+    cur.close()
+    conn.close()
+'''
