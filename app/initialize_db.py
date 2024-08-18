@@ -30,12 +30,14 @@ def check_and_create_database():
         host=DB_HOST,
         port=DB_PORT
     )
+    
     conn.autocommit = True  # Veritabanı değişikliklerini otomatik işle
     cur = conn.cursor()
 
     # Belirtilen veritabanının olup olmadığını kontrol et
     cur.execute("SELECT 1 FROM pg_catalog.pg_database " + 
     "WHERE datname = %s", (DB_NAME,))
+    
     exists = cur.fetchone()
     if not exists:
         # Veritabanı yoksa, yeni bir tane oluştur
