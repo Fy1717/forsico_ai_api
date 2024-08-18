@@ -1,5 +1,5 @@
 #import transformers
-from app.auth import token_required
+#from app.auth import token_required
 from flask import Blueprint, request, jsonify
 from app.models import create_log
 api_ai = Blueprint('ai', __name__, url_prefix="/api/ai")
