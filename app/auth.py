@@ -14,7 +14,6 @@ def token_required(f):
     @wraps(f)
     def decorated(*args, **kwargs):
         token = None
-        
         if 'Authorization' in request.headers:
             token = request.headers['Authorization'].split(" ")[1]
 
@@ -26,7 +25,6 @@ def token_required(f):
             current_user = data['user_id']
         except Exception as e:
             create_log(0, str(e))
-            
             return jsonify({'message': 'Token is invalid!'}), 401
 
         return f(current_user, *args, **kwargs)

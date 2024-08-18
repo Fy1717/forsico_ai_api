@@ -11,7 +11,7 @@ model_id_tr = "dbmdz/bert-base-turkish-cased"
 # Örnek olarak BERT Türkçe modeli
 model_en = transformers.pipeline("text-generation",
 model=model_id_en, device=0)
-model_tr = transformers.pipeline("text-generation", 
+model_tr = transformers.pipeline("text-generation",
 model=model_id_tr, device=0)
 '''
 
