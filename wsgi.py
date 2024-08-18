@@ -24,5 +24,7 @@ else:
     host = "127.0.0.1"
 
 if __name__ == '__main__':
+    FLASK_ENV = os.getenv('FLASK_ENV', 'production')  # Default to production for safety
+    host = "0.0.0.0" if FLASK_ENV == 'development' else "127.0.0.1"
     DEBUG_MODE = os.getenv('FLASK_DEBUG', 'False') == 'True'
     app.run(debug=DEBUG_MODE, host=host, port=5001)
