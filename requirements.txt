@@ -1,0 +1,15 @@
+Flask==2.0.3
+psycopg2-binary==2.9.3
+transformers==4.16.2
+torch
+flake8==3.9.2
+PyJWT
+Flask-SQLAlchemy
+Flask-CORS
+Werkzeug==2.2.2
+SQLAlchemy==1.4.22 
+Flask-Migrate==3.1.0
+psycopg2-binary
+python-dotenv
+
+# pip install -r requirements.txt
